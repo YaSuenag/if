@@ -9,9 +9,9 @@ jobs:
   final-check-before-release:
     runs-on: ubuntu-latest
     outputs:
-      - latest-release-name: ${{ steps.release-info.outputs.latest-release-name }}
-      - is-pre-release: ${{ steps.release-info.outputs.is-pre-release }}
-      - container-release-tag: ${{ steps.release-info.outputs.container-release-tag }}
+      latest-release-name: ${{ steps.release-info.outputs.latest-release-name }}
+      is-pre-release: ${{ steps.release-info.outputs.is-pre-release }}
+      container-release-tag: ${{ steps.release-info.outputs.container-release-tag }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
