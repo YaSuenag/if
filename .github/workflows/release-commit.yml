@@ -1,7 +1,8 @@
 name: Release commit
 on:
-  release:
-    types: [published]
+#  release:
+#    types: [published]
+  workflow_dispatch:
 
 env: 
   PR_BRANCH_NAME: release-${{ github.event.release.tag_name }}
