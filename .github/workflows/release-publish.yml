@@ -31,12 +31,14 @@ jobs:
       - name: Run integration tests
         run: npm run if-check -- -d manifests/outputs
 
+      - name: Archive checked source tree (to keep permissions)
+        run: tar cfz /tmp/src.tar.gz .
+
       - name: Upload checked source tree for the release
         uses: actions/upload-artifact@v4
         with:
           name: src
-          include-hidden-files: true
-          path: ${{ github.workspace }}
+          path: /tmp/src.tar.gz
 
       - name: Fetch latest release info
         id: release-info
@@ -70,6 +72,9 @@ jobs:
           name: src
           path: ${{ github.workspace }}
 
+      - name: Extract source tree
+        run: tar xfz /tmp/src.tar.gz
+
       - name: Initialize npm config
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
         env:
@@ -99,6 +104,9 @@ jobs:
         with:
           name: src
           path: ${{ github.workspace }}
+
+      - name: Extract source tree
+        run: tar xfz src.tar.gz
 
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
