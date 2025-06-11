@@ -73,7 +73,7 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: Extract source tree
-        run: tar xfz /tmp/src.tar.gz
+        run: tar xfz src.tar.gz
 
       - name: Initialize npm config
         run: npm config set //registry.npmjs.org/:_authToken $NPM_TOKEN
